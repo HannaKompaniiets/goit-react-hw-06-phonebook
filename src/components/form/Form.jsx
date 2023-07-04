@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import css from './form.module.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import { addContact } from 'redux/contactsSlice';
+import { selectContacts } from 'redux/selectors';
 
 const Form = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleInputChange = event => {
     switch (event.currentTarget.name) {
@@ -25,12 +27,20 @@ const Form = () => {
 
   const contactButtonSubmit = event => {
     event.preventDefault();
-    const contact = {
+    const data = {
       id: nanoid(),
       name,
       number,
     };
-    dispatch(addContact(contact));
+     if (
+       contacts.find(
+         contact => contact.name.toLowerCase() === data.name.toLowerCase()
+       )
+     ) {
+       alert(`${data.name} is already in Contacts.`);
+       return;
+     }
+    dispatch(addContact(data));
     reset();
   };
 
