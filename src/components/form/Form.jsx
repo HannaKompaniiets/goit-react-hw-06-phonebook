@@ -1,8 +1,8 @@
-import { useState } from "react"; 
+import { useState } from 'react';
 import css from './form.module.css';
-import { useDispatch } from "react-redux";
-import { nanoid } from "@reduxjs/toolkit";
-import { addContact } from "redux/contactsSlice";
+import { useDispatch } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import { addContact } from 'redux/contactsSlice';
 
 const Form = () => {
   const [name, setName] = useState('');
@@ -11,16 +11,16 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const handleInputChange = event => {
-      switch (event.currentTarget.name) {
-        case 'name':
-          setName(event.currentTarget.value);
-          break;
-        case 'number':
-          setNumber(event.currentTarget.value);
-          break;
-        default:
-          break;
-      }
+    switch (event.currentTarget.name) {
+      case 'name':
+        setName(event.currentTarget.value);
+        break;
+      case 'number':
+        setNumber(event.currentTarget.value);
+        break;
+      default:
+        break;
+    }
   };
 
   const contactButtonSubmit = event => {
@@ -79,4 +79,3 @@ const Form = () => {
 };
 
 export default Form;
-

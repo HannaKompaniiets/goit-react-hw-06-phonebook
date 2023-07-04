@@ -2,12 +2,12 @@ import Form from './form/Form';
 import ContactList from './new_contact/ContactList';
 import Filter from './filter/Filter';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/selectors';
+import { selectFilter, selectFilteredContacts } from 'redux/selectors';
 import { setFilter } from 'redux/filterSlice';
 
 export const App = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(selectContacts);
+  const contacts = useSelector(selectFilteredContacts);
   const filter = useSelector(selectFilter);
 
   return (

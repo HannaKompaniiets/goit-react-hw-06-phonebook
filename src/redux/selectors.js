@@ -4,8 +4,7 @@ export const selectFilteredContacts = ({ contacts: { items }, filter }) => {
   if (!filter) {
     return items;
   }
-
   return items.filter(item =>
-    item.text.toLowerCase().includes(filter.toLowerCase())
+    item.name.toLowerCase().includes(filter.toLowerCase())
   );
 };
